@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="datasource"
+  id="myeclipse.1470983893879"
+  context-root="/datasource"
+  j2ee-spec="6.0"
+  archive="datasource.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

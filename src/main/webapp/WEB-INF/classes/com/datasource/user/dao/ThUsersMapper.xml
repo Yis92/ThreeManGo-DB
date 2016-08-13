@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="th_users" >
+  <resultMap id="BaseResultMap" type="com.datasource.user.domain.ThUsers" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="nike_name" property="nikeName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="iden_no" property="idenNo" jdbcType="VARCHAR" />
+    <result column="lock_state" property="lockState" jdbcType="INTEGER" />
+    <result column="pwd_err_time" property="pwdErrTime" jdbcType="DATE" />
+    <result column="pwd_err_num" property="pwdErrNum" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, login_name, password, type, nike_name, real_name, iden_no, lock_state, pwd_err_time, 
+    pwd_err_num, create_time
+  </sql>
+  
+  <select id="queryModelList" resultMap="BaseResultMap" >
+  	 select 
+    	<include refid="Base_Column_List" />
+    from th_users
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from th_users
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from th_users
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.datasource.user.domain.ThUsers" >
+    insert into th_users ( 
+    		login_name,
+    		password, 
+      		type, 
+      		nike_name, 
+      		real_name, 
+      		iden_no, 
+      		create_time)
+   values ( 
+   			#{loginName,jdbcType=VARCHAR},
+   			#{password,jdbcType=VARCHAR}, 
+      		#{type,jdbcType=INTEGER}, 
+      		#{nikeName,jdbcType=VARCHAR}, 
+      		#{realName,jdbcType=VARCHAR}, 
+      		#{idenNo,jdbcType=VARCHAR}, 
+       		NOW())
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.datasource.user.domain.ThUsers" >
+    insert into th_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nikeName != null" >
+        nike_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="idenNo != null" >
+        iden_no,
+      </if>
+      <if test="lockState != null" >
+        lock_state,
+      </if>
+      <if test="pwdErrTime != null" >
+        pwd_err_time,
+      </if>
+      <if test="pwdErrNum != null" >
+        pwd_err_num,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="nikeName != null" >
+        #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idenNo != null" >
+        #{idenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lockState != null" >
+        #{lockState,jdbcType=INTEGER},
+      </if>
+      <if test="pwdErrTime != null" >
+        #{pwdErrTime,jdbcType=DATE},
+      </if>
+      <if test="pwdErrNum != null" >
+        #{pwdErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.datasource.user.domain.ThUsers" >
+    update th_users
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="nikeName != null" >
+        nike_name = #{nikeName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idenNo != null" >
+        iden_no = #{idenNo,jdbcType=VARCHAR},
+      </if>
+      <if test="lockState != null" >
+        lock_state = #{lockState,jdbcType=INTEGER},
+      </if>
+      <if test="pwdErrTime != null" >
+        pwd_err_time = #{pwdErrTime,jdbcType=DATE},
+      </if>
+      <if test="pwdErrNum != null" >
+        pwd_err_num = #{pwdErrNum,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.datasource.user.domain.ThUsers" >
+    update th_users
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      nike_name = #{nikeName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      iden_no = #{idenNo,jdbcType=VARCHAR},
+      lock_state = #{lockState,jdbcType=INTEGER},
+      pwd_err_time = #{pwdErrTime,jdbcType=DATE},
+      pwd_err_num = #{pwdErrNum,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
